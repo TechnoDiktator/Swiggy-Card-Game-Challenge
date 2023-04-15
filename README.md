@@ -1,7 +1,7 @@
 # Swiggy-Card-Game-Challenge
 Card Game code explanation
 
-## HOW TO RUN -  Down the repo and run the gamestart.java file in any Java IDE or from command line
+## HOW TO RUN -  Download the repo and run the gamestart.java file in any Java IDE or from command line
 
 
 ## Entities
