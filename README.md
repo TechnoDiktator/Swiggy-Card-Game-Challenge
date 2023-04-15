@@ -17,9 +17,10 @@ Card Game code explanation
 ## Game Service
 
 1. The game deck is initialized and shuffeled
-2. one card(from the top of the deck) is taken and this card now becomes the discardPile
+2. one card(from the top of the deck) is taken and this card now becomes the discardPile 
 3. The game will ask how many players will play ..min 2 and max 4 players are allowed. These players will be initialized and added to the players list
 4. Each player is given a hand(list) of five cards to start the game with
+5. Remaining cards go to another list called the draw pile which will be used to draw cards from the game
 
 
 
@@ -28,7 +29,7 @@ Each player gets one turn and the process continues till the game is over
 
 1. Current player picks a card from discard pile(from its top) and check if he has the same card or not . If he has the same (number or suit) card then he can remove that card from his hand
 
-2. If the player dosent have that card then it gets added to his hand(that is his personal list)
+2. If the player dosent have that card then he has to draw a card from the draw piles top
 
 
 3. If  a card is an action card(king , queen , jack , ace) then some extra behaviours have to be followed depending on the card like reverse the sequence of turns , or pick four cards at once from draq pile)
