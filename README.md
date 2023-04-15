@@ -6,9 +6,9 @@ Card Game code explanation
 
 ### CARD - This class defines a card with two properties 1st SUIT and 2nd NUMBER and contains getters and setters for the same 
 
-### DECK - This Class conatins a list that gets initialised with 52 Card class objects which are standard playing cards . It shuffles the card arraylist with the collections.shuffle method
+### DECK - This Class contains a list that gets initialised with 52 Card class objects which are standard playing cards . It shuffles the card arraylist with the collections.shuffle method
 
-### PLAYER - A player has an ID , A hand of cards (that is a list of 5 cards pisked from the shuffeled deck. this list can increase and decrease in size with the game progress) . Aplayer can remove a card from his hhand and add a card to his hand 
+### PLAYER - A player has an ID , A hand of cards (that is a list of 5 cards picked from the shuffeled deck. this list can increase and decrease in size with the game progress) . A player can remove a card from his hhand and add a card to his hand for which methods are provided 
           
 ### SUITS -  Simply an enum class with the four suits - Spade , Club , hearts , Diamonds
 
