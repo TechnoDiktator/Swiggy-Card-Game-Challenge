@@ -1,8 +1,11 @@
+import GameService.GameLogic;
+
 public class GameStart {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
-        System.out.println("Hello");
+        GameLogic g = new GameLogic();
+        g.playGame();
 
 
 
