@@ -8,15 +8,11 @@ import Entities.Deck;
 import Entities.Player;
 
 public class GameLogic {
-
-
     private ArrayList<Card> deck;
-
     private ArrayList<Player> players;
-
     private ArrayList<Card> drawPile;
-
     private ArrayList<Card> discardPile;
+
 
     public void playGame() throws Exception {
         Scanner sc = new Scanner(System.in);
@@ -24,26 +20,20 @@ public class GameLogic {
                 "Please input a number of players. The maximum number of players is 4, and the minimum number is 2.");
         int numOfPlayers = sc.nextInt();
 
-        /*
-         * if the number of players > 4 or players < 2
-         * will throw an Exception.
-         */
 
-        if (numOfPlayers < 2 || numOfPlayers > 4) {
+        if (numOfPlayers < 2 || numOfPlayers > 4) { //ckeack valid no of players
             throw new Exception("Invalid number of players ... Retry again....");
         }
 
-        /*
-         * Creating and shuffling the deck simultaneously
-         */
 
-        deck = new Deck().getDeck();
 
-        players = new ArrayList<>();
+        deck = new Deck().getDeck(); //deck initialized aand shuffeled
+
+        //list of the currently playing players
+        players = new ArrayList<>(); 
+        //giving 5 cards to each player at the start
         for (int i = 1; i <= numOfPlayers; i++) {
             Player p = new Player(i);
-
-            // adding 5 - 5 cards in each player
             for (int j = 1; j <= 5; j++) {
                 p.addCard(deck.get(deck.size() - 1));
                 deck.remove(deck.size() - 1);
@@ -52,41 +42,30 @@ public class GameLogic {
 
         }
 
-        /*
-         * at the first turn the top card of the draw will
-         * act as the first card or the top card of discard pile.
-         */
 
+        //initilizing the discardPile with one card from the deck
         discardPile = new ArrayList<>();
         discardPile.add(deck.get(0));
         deck.remove(0);
 
-        /*
-         * creating a draw pile
-         * from the deck.
-         */
+        //all the remaining cards go to the deck
         drawPile = new ArrayList<>();
         for (Card c : deck) {
             drawPile.add(c);
         }
 
-        // game starts now
+   
 
-        int playerTurn = 0;
-        int direction = 1;
-        /*
-         * cards to be taken/drawn by the particular
-         * player from the draw pile during his turn.
-         */
+        int playerTurn = 0; //player 0 starts the game
+        int direction = 1; //initial direction
 
+        //initially only one card has to be picked by a player
         int numCardsTake = 1;
 
         while (true) {
-            /*
-             * when the draw pile will be empty game will be
-             * ended as a draw.
-             */
-            if (drawPile.size() < numCardsTake) {
+
+            //if draw pile empties then game is over
+            if (drawPile.size() < numCardsTake) { 
                 System.out.println(
                         "The game has ended in a draw because there are not enough cards left to continue playing.");
                 break;
@@ -99,11 +78,6 @@ public class GameLogic {
             playerTurn %= numOfPlayers;
 
             // current player will atleast have 1 card ... it is guarranteed
-
-            /*
-             * following 2 variables initialisation
-             * for checking the matching parameters.
-             */
             boolean matched = false;
             int matchedNumber = -1;
             Card topDiscardCard = discardPile.get(discardPile.size() - 1);
@@ -111,22 +85,14 @@ public class GameLogic {
             // cards.
             System.out.println("Please discard the top card from the deck. = " + discardPile.get(discardPile.size() - 1));
 
-            /*
-             * matching mechanism of Set of Cards of
-             * Each player during his turn.
-             */
             for (Card currentPlayerCard : players.get(playerTurn).getHand()) {
-                /*
-                 * Matching condition for each turn
-                 * player will try to match each of his card
-                 * with the discard pile top card if the cards have
-                 * same numbers or same suits.
-                 */
 
+                // if number/suit of any of the hand cards match 
                 if (currentPlayerCard.getNumber() == topDiscardCard.getNumber()
                         || currentPlayerCard.getSuit() == topDiscardCard.getSuit()) {
-                    // checking if action card on discardPile top , so that they are not stackable
-
+                    
+                    
+                    //if card is an action card         
                     if (topDiscardCard.getNumber() == 1 || topDiscardCard.getNumber() == 11
                             || topDiscardCard.getNumber() == 12 || topDiscardCard.getNumber() == 13) {
                         if (currentPlayerCard.getNumber() == topDiscardCard.getNumber())
@@ -137,19 +103,11 @@ public class GameLogic {
                     System.out.println("Cards matched for player " + players.get(playerTurn).getPlayerId()
                             + " Card and new Discard Deck top card = " + currentPlayerCard);
 
-                    /*
-                     * to check if the current player has to
-                     * take more than one card or not, depending upon the
-                     * action card which the previous player may have
-                     * played.
-                     */
+                    //numcards take represents the number of cards current player has to pick
                     if (numCardsTake > 1) {
                         while (numCardsTake-- > 0) {
                             System.out.println("Drawing " + drawPile.get(drawPile.size() - 1) + " Card");
-                            /*
-                             * adding the card to player's hand and removing it
-                             * from the discard pile.
-                             */
+
                             players.get(playerTurn).addCard(drawPile.get(drawPile.size() - 1));
                             drawPile.remove(drawPile.size() - 1);
                         }
@@ -197,7 +155,7 @@ public class GameLogic {
             if (matched == true && players.get(playerTurn).getHand().size() == 0) {
 
                 System.out.println(
-                        "Congratulations player " + players.get(playerTurn).getPlayerId() + " won the match !!!");
+                        "Player " + players.get(playerTurn).getPlayerId() + " won the match !!!");
 
                 System.exit(0);
             }
@@ -239,12 +197,7 @@ public class GameLogic {
             }
             // to determine the next player whose gonna play.
             playerTurn += direction;
-
-
         }
-
     }
-
-
     
 }
