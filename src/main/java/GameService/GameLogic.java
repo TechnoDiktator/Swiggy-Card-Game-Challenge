@@ -22,6 +22,7 @@ public class GameLogic {
 
 
         if (numOfPlayers < 2 || numOfPlayers > 4) { //ckeack valid no of players
+
             throw new Exception("Invalid number of players ... Retry again....");
         }
 
@@ -67,7 +68,7 @@ public class GameLogic {
             //if draw pile empties then game is over
             if (drawPile.size() < numCardsTake) { 
                 System.out.println(
-                        "The game has ended in a draw because there are not enough cards left to continue playing.");
+                        "The game is a draw....");
                 break;
             }
 
@@ -83,7 +84,7 @@ public class GameLogic {
             Card topDiscardCard = discardPile.get(discardPile.size() - 1);
             // top card of the discard pile with whom the player will try to match his
             // cards.
-            System.out.println("Please discard the top card from the deck. = " + discardPile.get(discardPile.size() - 1));
+            System.out.println("Please discard the top card from the deck = " + discardPile.get(discardPile.size() - 1));
 
             for (Card currentPlayerCard : players.get(playerTurn).getHand()) {
 
@@ -123,19 +124,16 @@ public class GameLogic {
                 }
             }
 
-            /*
-             * if not matched then the player have to take a card from
-             * the draw pile and keep it with him.
-             */
 
+            //if not matched then the player has to take a card from the draw pile 
             if (matched == false) {
                 System.out.println("No cards match for player " + players.get(playerTurn).getPlayerId() + " Taking "
                         + numCardsTake + " Card(s)");
                 /*
-                 * number of cards to be taken by the current player
-                 * from the draw pile, depending upon the previous player's
-                 * turn.
-                 */
+                number of cards to be taken by the current player
+                from the draw pile, depending upon the previous player's
+                turn.
+                */
                 while (numCardsTake-- > 0) {
                     System.out.println("Drawing " + drawPile.get(drawPile.size() - 1) + " Card");
                     players.get(playerTurn).addCard(drawPile.get(drawPile.size() - 1));
