@@ -4,7 +4,7 @@ Card Game code explanation
 
 ## Entities
 
-###CARD - This class defines a card with two properties 1st SUIT and 2nd NUMBER and contains getters and setters for the same 
+### CARD - This class defines a card with two properties 1st SUIT and 2nd NUMBER and contains getters and setters for the same 
 
 ### DECK - This Class conatins a list that gets initialised with 52 Card class objects which are standard playing cards . It shuffles the card arraylist with the collections.shuffle method
 
@@ -14,7 +14,7 @@ Card Game code explanation
 
 
 
-## GAME SERVICE
+## Game Service
 
 1. The game deck is initialized and shuffeled
 2. one card(from the top of the deck) is taken and this card now becomes the discardPile
