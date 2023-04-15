@@ -114,11 +114,7 @@ public class GameLogic {
                         numCardsTake = 1;
                     }
 
-                    /*
-                     * if the player matches his card then
-                     * he removes the matched card from his
-                     * hand and place it to the discard pile.
-                     */
+                    //player removes the matched card from his hand an
                     players.get(playerTurn).removeCard(currentPlayerCard);
                     discardPile.add(currentPlayerCard);
                     matched = true;
@@ -148,10 +144,7 @@ public class GameLogic {
                 numCardsTake = 1;
             }
 
-            /*
-             * if player has matched and is left with no cards
-             * then, he has won the match. "Hurray!"
-             */
+            //if hand cards of a player are zero then he has won the match
             if (matched == true && players.get(playerTurn).getHand().size() == 0) {
 
                 System.out.println(
@@ -160,38 +153,22 @@ public class GameLogic {
                 System.exit(0);
             }
 
-            /* Bonus Section */
-
-            /*
-             * if the player has played the ACE card (Action card)
-             * then the next player's turn will be skipped.
-             */
-
+            //if matched number is one then current(just next) players turn will be skipped
             if (matched == true && matchedNumber == 1) {
                 playerTurn += direction;
             }
-            /*
-             * if the player has played the KING card (Action card)
-             * then the direction of the flow of the game would be reversed.
-             */
+            
+            //if matched card is King then reverse playing
             if (matched == true && matchedNumber == 13) {
                 direction *= -1;
             }
 
-            /*
-             * if the player has played the JACK card (Action card)
-             * then the next player have to take 4 cards from the
-             * draw pile.
-             */
-
+            //if matched card is jack then next player has to pick 4 cards from the drawpile
             if (matched == true && matchedNumber == 11) {
                 numCardsTake = 4;
             }
-            /*
-             * if the player has played the QUEEN card (Action card)
-             * then the next player have to take 2 cards from the
-             * draw pile.
-             */
+
+            //if matched card is queen then next player has to draw 2 cards from the draw pile
             if (matched == true && matchedNumber == 12) {
                 numCardsTake = 2;
             }
