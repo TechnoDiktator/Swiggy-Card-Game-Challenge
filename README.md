@@ -14,6 +14,7 @@ Card Game code explanation
           
 ### SUITS -  Simply an enum class with the four suits - Spade , Club , hearts , Diamonds
 
+### GameService (GameLogic) - Contains the gameplay logic
 
 
 ## Game Service
